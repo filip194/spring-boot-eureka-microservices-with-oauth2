@@ -1,7 +1,7 @@
 package com.iot.demo.api.carsresourceserver.controller;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.core.env.Environment;
@@ -21,6 +21,10 @@ import com.iot.demo.api.carsresourceserver.model.Car;
 @RequestMapping(path = "/cars")
 public class CarsController
 {
+    private final static List<Car> CARS = List.of(
+            new Car(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Trabant", "601"),
+            new Car(UUID.randomUUID(), "Zastava", "750"), new Car(UUID.randomUUID(), "Yugo", "45"));
+
     private final Environment env;
 
     public CarsController(Environment environment)
@@ -37,7 +41,7 @@ public class CarsController
     @GetMapping("/all")
     public Collection<Car> getAllCars()
     {
-        return Arrays.asList(new Car(UUID.randomUUID(), "Zastava", "750"), new Car(UUID.randomUUID(), "Yugo", "45"));
+        return CARS;
     }
 
     // wouldn't work without .toString
@@ -46,7 +50,7 @@ public class CarsController
     @GetMapping("/{id}")
     public Car getCar(@PathVariable String id, @AuthenticationPrincipal Jwt jwt)
     {
-        return new Car(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Trabant", "601");
+        return CARS.get(0);
     }
 
     // @Secured(value=...) is authority so ROLE_ prefix must be added

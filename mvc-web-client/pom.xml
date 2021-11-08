@@ -8,31 +8,44 @@
         <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.iot.demo.api.discoveryservice</groupId>
-    <artifactId>discovery-service</artifactId>
+    <groupId>com.iot.demo.api.mvcwebclient</groupId>
+    <artifactId>mvc-web-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>discovery-service</name>
-    <description>Discovery Service</description>
+    <name>mvc-web-client</name>
+    <description>MVC Web Client</description>
     <properties>
         <java.version>11</java.version>
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
-
     <dependencies>
-        <!--	Enables bootstrap.properties file-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webflux</artifactId>
+        </dependency>
+<!--        WebClient depends on reactor-netty project. This is because WebClient comes from Spring Reactive framework,-->
+<!--        and reactor-netty is new runtime which provides asynchronous and non-blocking runtime that supports -->
+<!--        reactive streams backpressure for client and server over the range of different protocols, TCP, UDP and HTTP.-->
+        <dependency>
+            <groupId>io.projectreactor.netty</groupId>
+            <artifactId>reactor-netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -43,25 +56,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--	Fixes:Error creating bean with name 'eurekaServerContext': Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: com/sun/jersey/client/apache4/ApacheHttpClient4-->
-        <dependency>
-            <groupId>com.sun.jersey.contribs</groupId>
-            <artifactId>jersey-apache-client4</artifactId>
-            <version>1.19.4</version>
-        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

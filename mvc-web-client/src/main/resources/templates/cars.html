@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://wwww.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cars</title>
+    </head>
+
+    <body>
+        <h1>Cars page</h1>
+
+        <div th:if="${cars.empty}">
+            <div>No cars found</div>
+        </div>
+
+        <div th:each="car : ${cars}">
+            <p>
+                <span th:text="${car.carManufacturer}"></span>
+                &nbsp;
+                <span th:text="${car.carModel}"></span>
+            </p>
+        </div>
+    </body>
+</html>
