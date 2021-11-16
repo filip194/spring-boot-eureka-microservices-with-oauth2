@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript SPA with PKCE</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="indexFunctions.js"></script>
+</head>
+<body>
+    <h1>Index Page</h1>
+
+    <p id="stateValue"></p>
+    <div><input type="button" value="Generate state value" onclick="generateState(30)"></div>
+
+    <p id="codeVerifierValue"></p>
+    <div><input type="button" value="Generate code verifier value" onclick="generateCodeVerifier()"></div>
+
+    <p id="codeChallengeValue"></p>
+    <div><input type="button" value="Generate code challenge value" onclick="generateCodeChallenge()"></div>
+
+    <p><input type="button" value="Get authorization code value" onclick="getAuthorizationCode()"></p>
+
+    <p>Access Token: <span id="accessToken"></span></p>
+
+    <p><input type="button" value="Get smart homes port" onclick="getInfoFromResourceServer()"></p>
+</body>
+</html>

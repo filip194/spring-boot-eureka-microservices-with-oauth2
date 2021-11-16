@@ -1,0 +1,48 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            # or could be more specific:
+            #            allowedOrigins: "http://localhost:9191"
+            #            allowedMethods:
+            #             - GET
+            #             - POST
+            #            allowedHeaders:
+            #             - Authorization
+
+##############################
+# Another way of configuring #
+##############################
+
+#app:
+#  routes:
+#    uri:
+#      users-api: lb://users-service
+
+#spring:
+#  #  application:
+#  #    name: gateway
+#  cloud:
+#    gateway:
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders:
+#              - Authorization
+#        add-to-simple-url-handler-mapping: true # this one was missing
+#      routes:
+#        - id: usersApi
+#          uri: ${app.routes.uri.users-api}/users/**
+#          predicates:
+#            - Path=/users/**
+#            - Method=POST,PUT,GET,DELETE
+#          filters:
+#            - RemoveRequestHeader=Cookie
+#            - DedupeResponseHeader=Access-Control-Allow-Origin
