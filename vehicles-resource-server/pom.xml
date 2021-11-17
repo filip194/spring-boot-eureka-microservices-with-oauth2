@@ -8,11 +8,11 @@
         <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.iot.demo.api.cars.resource.server</groupId>
-    <artifactId>cars-resource-server</artifactId>
+    <groupId>com.iot.demo.api.vehicles.resource.server</groupId>
+    <artifactId>vehicles-resource-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cars-resource-server</name>
-    <description>Cars Resource Server</description>
+    <name>vehicles-resource-server</name>
+    <description>Vehicles Resource Server</description>
     <properties>
         <java.version>11</java.version>
         <spring-cloud.version>2020.0.4</spring-cloud.version>

@@ -1,7 +1,9 @@
-package com.iot.demo.api.carsresourceserver.controller;
+package com.iot.demo.api.vehiclesresourceserver.controller;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.core.env.Environment;
@@ -15,19 +17,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iot.demo.api.carsresourceserver.model.Car;
+import com.iot.demo.api.vehiclesresourceserver.model.Vehicle;
 
 @RestController
-@RequestMapping(path = "/cars")
-public class CarsController
+@RequestMapping(path = "/vehicles")
+public class VehiclesController
 {
-    private final static List<Car> CARS = List.of(
-            new Car(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Trabant", "601"),
-            new Car(UUID.randomUUID(), "Zastava", "750"), new Car(UUID.randomUUID(), "Yugo", "45"));
+    private final static List<Vehicle> VEHICLES = List.of(
+            new Vehicle(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Trabant", "601"),
+            new Vehicle(UUID.randomUUID(), "Zastava", "750"), new Vehicle(UUID.randomUUID(), "Yugo", "45"));
 
     private final Environment env;
 
-    public CarsController(Environment environment)
+    public VehiclesController(Environment environment)
     {
         this.env = environment;
     }
@@ -35,22 +37,28 @@ public class CarsController
     @GetMapping(path = "/port")
     public String getPort()
     {
-        return "Cars Resource Server working on port: " + env.getProperty("local.server.port");
+        return "Vehicles Resource Server working on port: " + env.getProperty("local.server.port");
+    }
+
+    @GetMapping(path = "/token")
+    public Map<String, Jwt> getToken(@AuthenticationPrincipal Jwt jwt)
+    {
+        return Collections.singletonMap("principal", jwt);
     }
 
     @GetMapping("/all")
-    public Collection<Car> getAllCars()
+    public Collection<Vehicle> getAllVehicles()
     {
-        return CARS;
+        return VEHICLES;
     }
 
     // wouldn't work without .toString
-    // @PostAuthorize(value = "returnObject.carId == #jwt.subject")
-    @PostAuthorize(value = "returnObject.carId.toString == #jwt.subject")
+    // @PostAuthorize(value = "returnObject.vehicleId == #jwt.subject")
+    @PostAuthorize(value = "returnObject.vehicleId.toString == #jwt.subject")
     @GetMapping("/{id}")
-    public Car getCar(@PathVariable String id, @AuthenticationPrincipal Jwt jwt)
+    public Vehicle getVehicle(@PathVariable String id, @AuthenticationPrincipal Jwt jwt)
     {
-        return CARS.get(0);
+        return VEHICLES.get(0);
     }
 
     // @Secured(value=...) is authority so ROLE_ prefix must be added
@@ -60,9 +68,9 @@ public class CarsController
     // @PreAuthorize(value = "hasAuthority('ROLE_iot_developer')")
     @PreAuthorize(value = "#id == #jwt.subject") // this subject is 'sub' in JSON
     @DeleteMapping(path = "/{id}")
-    public String deleteCar(@PathVariable String id, @AuthenticationPrincipal Jwt jwt)
+    public String deleteVehicle(@PathVariable String id, @AuthenticationPrincipal Jwt jwt)
     {
-        return "Deleted car with id: " + id + ", and JWT subject: " + jwt.getSubject();
+        return "Deleted vehicle with id: " + id + ", and JWT subject: " + jwt.getSubject();
     }
 
 }

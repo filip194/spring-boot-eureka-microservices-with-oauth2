@@ -1,4 +1,4 @@
-package com.iot.demo.api.carsresourceserver;
+package com.iot.demo.api.vehiclesresourceserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,12 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class CarsResourceServerApplication
+public class VehiclesResourceServerApplication
 {
 
     public static void main(String[] args)
     {
-        SpringApplication.run(CarsResourceServerApplication.class, args);
+        SpringApplication.run(VehiclesResourceServerApplication.class, args);
     }
 
 }

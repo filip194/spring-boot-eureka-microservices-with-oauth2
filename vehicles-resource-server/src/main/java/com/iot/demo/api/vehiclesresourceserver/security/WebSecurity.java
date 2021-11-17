@@ -1,4 +1,4 @@
-package com.iot.demo.api.carsresourceserver.security;
+package com.iot.demo.api.vehiclesresourceserver.security;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

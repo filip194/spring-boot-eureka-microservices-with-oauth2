@@ -1,4 +1,4 @@
-package com.iot.demo.api.carsresourceserver.security;
+package com.iot.demo.api.vehiclesresourceserver.security;
 
 import java.util.Collection;
 import java.util.Collections;
