@@ -2,13 +2,21 @@ package com.iot.demo.api.vehiclesresourceserver.model;
 
 import java.util.UUID;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.jackson.Jacksonized;
 
-@Data
+@Jacksonized
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vehicle
 {
-    private final UUID vehicleId;
-    private final String vehicleManufacturer;
-    private final String vehicleModel;
+    private UUID vehicleId;
+    private String vehicleManufacturer;
+    private String vehicleModel;
 }
 
