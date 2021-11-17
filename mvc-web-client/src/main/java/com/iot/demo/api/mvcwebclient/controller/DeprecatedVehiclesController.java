@@ -20,7 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.iot.demo.api.mvcwebclient.model.Car;
+import com.iot.demo.api.mvcwebclient.model.Vehicle;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,9 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 // regular Spring MVC controller
 @Controller
-public class DeprecatedCarsController
+public class DeprecatedVehiclesController
 {
-    private final static String URL = "http://localhost:9092/cars/all";
+    private final static String URL = "http://localhost:9092/vehicles/all";
 
     // this service needs to be used together withOAuth2AuthenticationToken
     // service is available automatically through Spring Security context
@@ -42,7 +42,7 @@ public class DeprecatedCarsController
 
     private final RestTemplate restTemplate;
 
-    public DeprecatedCarsController(OAuth2AuthorizedClientService oAuth2AuthorizedClientService,
+    public DeprecatedVehiclesController(OAuth2AuthorizedClientService oAuth2AuthorizedClientService,
             RestTemplate restTemplate)
     {
         this.oAuth2AuthorizedClientService = oAuth2AuthorizedClientService;
@@ -50,9 +50,9 @@ public class DeprecatedCarsController
 
     }
 
-    // this path will trigger when user requests cars view in their browser
-    @GetMapping(path = "/deprecated/cars/all")
-    public String getCars(Model model, @AuthenticationPrincipal OidcUser principal/*, Authentication authentication*/)
+    // this path will trigger when user requests vehicles view in their browser
+    @GetMapping(path = "/deprecated/vehicles/all")
+    public String getVehicles(Model model, @AuthenticationPrincipal OidcUser principal/*, Authentication authentication*/)
     {
         // this is another way to get Authentication object from Spring Security context
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -77,18 +77,20 @@ public class DeprecatedCarsController
 
         final HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + jwtAccessToken);
-        final HttpEntity<List<Car>> entity = new HttpEntity<>(headers);
+        final HttpEntity<List<Vehicle>> entity = new HttpEntity<>(headers);
 
-        final ResponseEntity<List<Car>> responseEntity = restTemplate
-                .exchange(URL, HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});
+        final ResponseEntity<List<Vehicle>> responseEntity = restTemplate.exchange(URL, HttpMethod.GET, entity,
+                new ParameterizedTypeReference<>()
+                {
+                });
 
-        final List<Car> cars = responseEntity.getBody();
+        final List<Vehicle> vehicles = responseEntity.getBody();
 
-        // addAttribute [key - value] pair; by key I can later access list object of cars in HTML page/Thymeleaf
-        model.addAttribute("cars", cars);
+        // addAttribute [key - value] pair; by key I can later access list object of vehicles in HTML page/Thymeleaf
+        model.addAttribute("vehicles", vehicles);
 
-        // name of the view; name of the web page that will display list of cars
-        return "cars";
+        // name of the view; name of the web page that will display list of vehicles
+        return "vehicles";
     }
 }
 

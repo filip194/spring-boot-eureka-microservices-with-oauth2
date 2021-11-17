@@ -13,7 +13,7 @@ public class RestClientsConfig
 {
 
     // deprecated for use with OAuth2 client libraries, WebClient should be used instead
-    // used with DeprecatedCarsController
+    // used with DeprecatedVehiclesController
     @Deprecated
     @Bean
     public RestTemplate getRestTemplate()

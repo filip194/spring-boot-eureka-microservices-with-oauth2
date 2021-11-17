@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MvcWebClientApplication {
+public class MvcWebClientApplication
+{
 
-	public static void main(String[] args) {
-		SpringApplication.run(MvcWebClientApplication.class, args);
-	}
+    public static void main(String[] args)
+    {
+        SpringApplication.run(MvcWebClientApplication.class, args);
+    }
 
 }

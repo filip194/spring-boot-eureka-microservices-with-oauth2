@@ -2,21 +2,21 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://wwww.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Cars</title>
+        <title>Vehicles</title>
     </head>
 
     <body>
-        <h1>Cars page</h1>
+        <h1>Vehicles page</h1>
 
-        <div th:if="${cars.empty}">
-            <div>No cars found</div>
+        <div th:if="${vehicles.empty}">
+            <div>No vehicles found</div>
         </div>
 
-        <div th:each="car : ${cars}">
+        <div th:each="vehicle : ${vehicles}">
             <p>
-                <span th:text="${car.carManufacturer}"></span>
+                <span th:text="${vehicle.vehicleManufacturer}"></span>
                 &nbsp;
-                <span th:text="${car.carModel}"></span>
+                <span th:text="${vehicle.vehicleModel}"></span>
             </p>
         </div>
     </body>

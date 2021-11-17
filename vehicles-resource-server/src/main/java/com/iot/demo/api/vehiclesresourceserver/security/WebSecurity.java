@@ -21,7 +21,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter
 
         http
             .authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/cars/all")
+            .antMatchers(HttpMethod.GET, "/vehicles/all")
             //.hasAuthority("SCOPE_profile") // Spring appends "SCOPE_" prefix to each scope that it finds
             .hasRole("iot_developer")// Does not need ROLE_ prefix, but Authority does need ROLE_
             // .hasAnyRole("iot_developer", "user")
