@@ -24,8 +24,8 @@ import com.iot.demo.api.vehiclesresourceserver.model.Vehicle;
 public class VehiclesController
 {
     private final static List<Vehicle> VEHICLES = List.of(
-            new Vehicle(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Trabant", "601"),
-            new Vehicle(UUID.randomUUID(), "Zastava", "750"), new Vehicle(UUID.randomUUID(), "Yugo", "45"));
+            new Vehicle(UUID.fromString("6799627f-a4da-4902-92f1-dc83e96d9a67"), "Cargo Ship", "X502"),
+            new Vehicle(UUID.randomUUID(), "Cargo Jet", "Z150"), new Vehicle(UUID.randomUUID(), "Tow Truck", "Y45"));
 
     private final Environment env;
 
